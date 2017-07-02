@@ -2,6 +2,7 @@
 var Note = require("../models/Note.js");
 var Listing = require("../models/Listing.js");
 var listingController = require("../controllers/listings_controller.js");
+var noteController = require("../controllers/note_controller.js");
 // Our scraping tools
 var request = require("request");
 var cheerio = require("cheerio");
@@ -43,7 +44,7 @@ module.exports = function (app) {
 
 
     // Create a new note or replace an existing note
-    app.post("/listings/:id", function (req, res) {
+    app.post("/articles/:id", function (req, res) {
         // Create a new note and pass the req.body to the entry
         var newNote = new Note(req.body);
 
@@ -68,12 +69,17 @@ module.exports = function (app) {
                             console.log(err);
                         } else {
                             // Or send the document to the browser
+                            console.log(doc);
                             res.send(doc);
                         }
                     });
             }
         });
     });
+
+    app.get("/articles/:id", function (req, res) {
+        listingController.findOne(req.params.id, res, function (data) {});
+    })
 
     app.get("/saved", function (req, res) {
         listingController.findSaved(res, function (data) {})
@@ -89,5 +95,17 @@ module.exports = function (app) {
         // Create a new note and pass the req.body to the entry
         // And save the new note the db
         listingController.unsave(req.params.id, function (data) {})
+    });
+
+    app.route('/note/:id')
+    .post((req, res) => {
+      noteController.saveNote(req.params.id, req.body, (response) => {
+        res.json(response);
+      });
+    })
+    .delete((req, res) => {
+      noteController.deleteNote(req.params.id, (response) => {
+        res.json(response);
+      });
     });
 };

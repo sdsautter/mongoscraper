@@ -1,6 +1,5 @@
 <div id="wrapper">
-    <h1>Raleigh Craigslist Pinball Finder</h1>
-    <h2><i>These are the listings you have saved.</i></h2>
+    <h1>Raleigh Craigslist Saved Pins</h1>
     <div id="listings" class="row">
         {{#each listings}}
         <div class="col s6 m3">
@@ -17,19 +16,20 @@
                         <button class="btn waves-effect waves-light unsave-button" type="submit">Unsave
                 </button>
                     </form>
-                    <a class="waves-effect waves-light btn" href="#modal1">Notes</a>
+                    <a class="waves-effect waves-light btn modal-note" href="#{{this._id}}">Notes</a>
 
                     <!-- Modal Structure -->
-                    <div id="modal1" class="modal">
+                    <div id="{{this._id}}" class="modal">
                         <div class="modal-content">
+                            
                             <h5>{{this.title}}</h5>
+                            <form>
                             <input id='titleinput' name='title' placeholder='Note Title'>
                             <textarea id='bodyinput' name='body'></textarea>
                             <button data-id='{{this._id}}' id='savenote'>Save Note</button>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-                        </div>
+                        </form>
+                        <div id="{{this._id}}Notes"> </div>
+                        </div>                        
                     </div>
                 </div>
             </div>

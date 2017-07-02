@@ -22,7 +22,7 @@ exports.deleteUnsaved = (callback) => {
     });
 }
 
-exports.findOne = (id, callback) => {
+exports.findOne = (id, res, callback) => {
     Listing.findOne({
             "_id": id
         })
@@ -132,4 +132,10 @@ exports.unsave = (id, callback) => {
             }
             console.log("goodbye")
         });
+}
+
+exports.findNote = (noteId, callback) => {
+    Listing.findOne({"note": noteId}, function (error, doc) {
+
+    })
 }
