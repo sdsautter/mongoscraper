@@ -20,10 +20,19 @@ var ListingSchema = new Schema({
     type: String,
     required: true
   },
+  // price is a required string
+  location: {
+    type: String,
+    required: true
+  },
   // link is a required string
   link: {
     type: String,
     required: true
+  },
+  saved: {
+    type: Boolean,
+    default: false
   },
   // This only saves one note's ObjectId, ref refers to the Note model
   note: {
