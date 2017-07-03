@@ -7,6 +7,7 @@ var mongoose = require("mongoose");
 var methodOverride = require("method-override");
 var exphbs = require("express-handlebars");
 var Handlebars = require("handlebars");
+var PORT = process.env.PORT || 8080;
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 mongoose.Promise = Promise;
@@ -47,6 +48,6 @@ db.once("open", function () {
 require("./routes/routes.js")(app);
 
 // Listen on port 3000
-app.listen(8080, function () {
-  console.log("App running on port 8080!");
+app.listen(PORT, function () {
+  console.log("App running on port " + PORT + "!");
 });
