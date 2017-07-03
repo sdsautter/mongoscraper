@@ -1,8 +1,8 @@
 const Note = require('../models/Note');
 const Listing = require('../models/Listing.js');
 
-exports.saveNote = (_id, post, callback) => {
-  const note = new Note(post);
+exports.saveNote = (_id, listing, callback) => {
+  const note = new Note(listing);
 
   // And save the new note the db
   note.save((err, doc) => {

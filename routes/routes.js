@@ -108,4 +108,8 @@ module.exports = function (app) {
         res.json(response);
       });
     });
+
+    app.delete("/delete_unsaved", function(req, res) {
+        listingController.deleteUnsaved(res, function (data) {})
+    })
 };

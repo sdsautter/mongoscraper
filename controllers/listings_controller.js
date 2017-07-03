@@ -16,9 +16,17 @@ exports.findAll = (res, callback) => {
     });
 }
 
-exports.deleteUnsaved = (callback) => {
+exports.deleteUnsaved = (res, callback) => {
     Listing.deleteMany({
         "saved": false
+    }, function (error, doc) {
+        if (error) {
+            console.log(error);
+        }
+        // Or send the doc to the browser as a json object
+        else {
+            return res.json(doc);
+        }
     });
 }
 
@@ -135,7 +143,9 @@ exports.unsave = (id, callback) => {
 }
 
 exports.findNote = (noteId, callback) => {
-    Listing.findOne({"note": noteId}, function (error, doc) {
+    Listing.findOne({
+        "note": noteId
+    }, function (error, doc) {
 
     })
 }

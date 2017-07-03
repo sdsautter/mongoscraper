@@ -1,5 +1,14 @@
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Raleigh Craig's Pins</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="/">Home</a></li>
+        </ul>
+    </div>
+</nav>
 <div id="wrapper">
-    <h1>Raleigh Craigslist Saved Pins</h1>
+
+    <h3>Raleigh Craigslist Saved Pins</h3>
     <div id="listings" class="row">
         {{#each listings}}
         <div class="col s6 m3">
@@ -12,24 +21,32 @@
                 </div>
                 <div class="card-action">
                     <a href="{{this.link}}">Link</a>
+                    <div class="row">
+      <div class="col s12">
                     <form method="POST" action="/unsave/{{this._id}}?_method=PUT">
                         <button class="btn waves-effect waves-light unsave-button" type="submit">Unsave
                 </button>
                     </form>
+      </div>
+                    </div>
+                    <div class="row">
+      <div class="col s12">
                     <a class="waves-effect waves-light btn modal-note" href="#{{this._id}}">Notes</a>
 
                     <!-- Modal Structure -->
                     <div id="{{this._id}}" class="modal">
                         <div class="modal-content">
-                            
+
                             <h5>{{this.title}}</h5>
                             <form>
-                            <input id='titleinput' name='title' placeholder='Note Title'>
-                            <textarea id='bodyinput' name='body'></textarea>
-                            <button data-id='{{this._id}}' id='savenote'>Save Note</button>
-                        </form>
-                        <div id="{{this._id}}Notes"> </div>
-                        </div>                        
+                                <input id='titleinput{{this._id}}' name='title' placeholder='Note Title'>
+                                <textarea id='bodyinput{{this._id}}' name='body'></textarea>
+                                <button data-id='{{this._id}}' class='savenote'>Save Note</button>
+                            </form>
+                            </div>
+                    </div>
+                            <div id="{{this._id}}Notes"> </div>
+                        </div>
                     </div>
                 </div>
             </div>
